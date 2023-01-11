@@ -24,8 +24,8 @@ WORKDIR /usr/src/app
 
 RUN pip install demucs
  
-#COPY requirements.system .
-#RUN sed 's/#.*//' ./requirements.system | xargs apt-get install -y
+COPY requirements.system .
+RUN sed 's/#.*//' ./requirements.system | xargs apt-get install -y
 
 COPY ./test5.mp3 .
 RUN demucs -n htdemucs_ft -d cpu test5.mp3 #Trigger model download
