@@ -28,5 +28,5 @@ RUN pip install demucs
 #RUN sed 's/#.*//' ./requirements.system | xargs apt-get install -y
 
 COPY ./test5.mp3 .
-RUN demucs -n htdemucs_ft -d cpu test.mp3 #Trigger model download
+RUN demucs -n htdemucs_ft -d cpu test5.mp3 #Trigger model download
 RUN rm -r separated  # cleanup
