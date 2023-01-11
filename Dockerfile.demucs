@@ -1,0 +1,32 @@
+FROM python:3.10-slim-bullseye
+
+RUN apt-get update && pip install --upgrade pip 
+
+# Install Git
+#RUN apt install git -y
+
+# Install Facebook Demucs
+#RUN mkdir -p /lib/demucs
+
+#WORKDIR /lib/demucs
+
+#RUN git clone -b main --single-branch https://github.com/facebookresearch/demucs /lib/demucs
+
+#RUN pip install -r /lib/demucs/requirements_minimal.txt
+#RUN python3 -m pip install -e .
+
+
+#VOLUME /data/input
+#VOLUME /data/output
+#VOLUME /data/models
+
+WORKDIR /usr/src/app
+
+RUN pip install demucs
+ 
+#COPY requirements.system .
+#RUN sed 's/#.*//' ./requirements.system | xargs apt-get install -y
+
+COPY ./test5.mp3 .
+RUN demucs -n htdemucs_ft -d cpu test.mp3 #Trigger model download
+RUN rm -r separated  # cleanup
